@@ -2,15 +2,35 @@
   <div class="row">
     <div class="col col-md-1"></div>
     <div class="col col-md-10">
-      <form class="filter">
+      <form
+        class="filter"
+        (submit)="getSpecificIssues()"
+        [formGroup]="issueForm"
+      >
         <mat-form-field class="filter" appearance="fill">
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" />
-          <mat-hint style="color: crimson"
-            >Search or filter by all the colums is possible.</mat-hint
+          <mat-label>Github User</mat-label>
+          <input matInput formControlName="username" />
+          <mat-hint style="color: green"
+            >Please enter the github username (default is angular)</mat-hint
           >
         </mat-form-field>
+        <mat-form-field class="filter" appearance="fill">
+          <mat-label>Github Repo</mat-label>
+          <input matInput formControlName="repo" />
+          <mat-hint style="color: green"
+            >Please enter the repo of which issues needs to be fetched (default
+            is angular)</mat-hint
+          >
+        </mat-form-field>
+        <button mat-raised-button color="warn">FETCH ISSUES</button>
       </form>
+      <mat-form-field class="filter" appearance="fill">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" />
+        <mat-hint style="color: green"
+          >Search or filter by all the colums is possible.</mat-hint
+        >
+      </mat-form-field>
       <table
         mat-table
         [dataSource]="dataSource"

@@ -17,23 +17,8 @@ export class GithubService {
 
   constructor(private http: HttpClient) { }
 
-  fetchRepoIssues() {
-    this.dataObervable = this.http.get('https://api.github.com/repos/angular/angular/issues');
+  fetchRepoIssues(user = 'angular', repo = 'angular') {
+    this.dataObervable = this.http.get(`https://api.github.com/repos/${user}/${repo}/issues`);
     return this.dataObervable;
-    // this.http.get('https://api.github.com/repos/angular/angular/issues')
-    //   .subscribe(data => {
-    //     this.allData = data;
-    //     this.allData.forEach(item => {
-    //       const obj = {
-    //         title: item.title,
-    //         author: item.user.login,
-    //         status: item.state,
-    //         label: item.label,
-    //         url: item.url
-    //       }
-    //       this.dataArray.push(obj);
-    //     });
-    //   });
-    // return this.dataArray;
   }
 }
